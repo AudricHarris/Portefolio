@@ -28,8 +28,6 @@ header {
 	top : 10px;
 }
 
-
-
 .logo img {
 	height: 45px;
 	margin-right: 8px;
@@ -87,6 +85,8 @@ main {
 .sidebar {
 	background-color: #ffffff;
 	width: 200px;
+	min-width: 200px; /* Prevent shrinking */
+	flex-shrink: 0; /* Prevent flex shrinking */
 	border-right: 3px solid black;
 	padding: 20px;
 }
@@ -117,81 +117,32 @@ main {
 	transform: translateX(4px);
 }
 
-/* Content area */
-.content {
-	flex-grow: 1;
-	background-color: #f4f4f4;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.main-logo {
-	height: 120px;
-	margin-bottom: 15px;
-}
-
-.title h1 {
-	font-size: 36px;
-	margin: 0;
-}
-
-.title h2 {
-	font-size: 24px;
-	margin: 5px 0 20px;
-	font-weight: normal;
-}
-
-/* Action buttons */
-.action-buttons {
-	display: flex;
-	gap: 12px;
-}
-
-.gradient,
-.black {
-	padding: 12px 20px;
-	border-radius: 6px;
-	font-weight: bold;
-	color: white;
-	text-decoration: none;
-	font-size: 16px;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.gradient {
-	background: linear-gradient(90deg, #3b5dff, #5e33ff);
-	border-radius: 6px;
-	border: 6px linear-gradient(90deg, #3b5dff, #5e33ff);;
-}
-
-.black {
-	background-color: black;
-}
-
-.gradient:hover,
-.black:hover {
-	transform: scale(1.05);
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
+/* Content area - Default (for homepage with main-logo) */
 .content {
 	flex-grow: 1;
 	background-color: #eaeaea;
 	padding: 40px;
 	box-sizing: border-box;
+	overflow-y: auto;
+	height: 100%;
+	display: block;
+}
+
+/* Content area - For homepage only (when it contains main-logo) */
+.content:has(.main-logo) {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	overflow-y: visible;
 }
-
 
 .content h1 {
 	font-size: 28px;
 	margin-bottom: 60px;
 	text-align: center;
 	color: #000;
+	margin-top: 0;
 }
 
 .competence-grid {
@@ -203,9 +154,6 @@ main {
 	max-width: 1000px;
 	margin: 0 auto;
 }
-
-
-
 
 .competence-card {
 	background-color: white;
@@ -245,15 +193,67 @@ main {
 	text-decoration: none;
 }
 
+/* Main logo and title styles for homepage */
+.main-logo {
+	height: 120px;
+	margin-bottom: 15px;
+}
+
+.title h1 {
+	font-size: 36px;
+	margin: 0;
+}
+
+.title h2 {
+	font-size: 24px;
+	margin: 5px 0 20px;
+	font-weight: normal;
+}
+
+/* Action buttons */
+.action-buttons {
+	display: flex;
+	gap: 12px;
+}
+
+.gradient,
+.black {
+	padding: 12px 20px;
+	border-radius: 6px;
+	font-weight: bold;
+	color: white;
+	text-decoration: none;
+	font-size: 16px;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gradient {
+	background: linear-gradient(90deg, #3b5dff, #5e33ff);
+	border-radius: 6px;
+	border: 6px linear-gradient(90deg, #3b5dff, #5e33ff);
+}
+
+.black {
+	background-color: black;
+}
+
+.btn.black{
+	color :white;
+}
+
+.gradient:hover,
+.black:hover {
+	transform: scale(1.05);
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Link styles */
 a:link {
-  color: relative;
+  color: inherit;
   text-decoration: none;
 }
 
-/* visited link */
 a:visited {
-  color: relative;
+  color: inherit;
   text-decoration: none;
 }
-
-
